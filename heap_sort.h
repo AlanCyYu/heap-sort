@@ -3,6 +3,6 @@
 
 #include "stdint.h"
 
-void HeapSort(int32_t* arr, uint16_t size, uint8_t dir);
+void HeapSort(int16_t* arr, uint16_t size);
 
 #endif

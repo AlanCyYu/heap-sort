@@ -2,42 +2,30 @@
 #include "heap_sort.h"
 #include "stdint.h"
 
-void HeapSort(int32_t* arr, uint16_t size, uint8_t dir);
-void MaxMinHeapify(int32_t* arr, uint16_t maxIndex, uint8_t dir, int32_t index);
-void Swap(int32_t* a, int32_t* b);
+void HeapSort(int16_t* arr, uint16_t size);
+void MaxMinHeapify(int16_t* arr, uint16_t maxIndex, int16_t index);
+void Swap(int16_t* a, int16_t* b);
 
-void HeapSort(int32_t* arr, uint16_t size, uint8_t dir)
+void HeapSort(int16_t* arr, uint16_t size)
 {
     uint16_t maxIndex = size - 1;
-    int32_t index, tempIdx, temp, son;
     int16_t i;
-    
-    //find parent of last index
-    if ((maxIndex) % 2 == 0)
-    {
-        index = (maxIndex-2)/2;
-    }
-    else
-    {
-        index = (maxIndex-1)/2;
-    }
 
-    for (i = maxIndex; i >= 0; i--)
+    for (i = ((maxIndex-1)/2); i >= 0; i--)//(maxIndex-1)/2) = Last parent
     {
-        MaxMinHeapify(arr, maxIndex, dir, i);
+        MaxMinHeapify(arr, maxIndex, i);
     }
     
     for (i = maxIndex; i > 0; i--)
     {
         Swap(&arr[0], &arr[i]);
-        MaxMinHeapify(arr, (i-1), dir, 0);
+        MaxMinHeapify(arr, (i-1), 0);
     }
-
 }
 
-void MaxMinHeapify(int32_t* arr, uint16_t maxIndex, uint8_t dir, int32_t index)
+void MaxMinHeapify(int16_t* arr, uint16_t maxIndex, int16_t index)
 {
-    int32_t son;
+    int16_t son;
     
     son = index*2+1;
     
@@ -58,9 +46,9 @@ void MaxMinHeapify(int32_t* arr, uint16_t maxIndex, uint8_t dir, int32_t index)
     }
 }
 
-void Swap(int32_t* a, int32_t* b)
+void Swap(int16_t* a, int16_t* b)
 {
-    int32_t temp = *a;
+    int16_t temp = *a;
     *a = *b;
     *b = temp;
 }
